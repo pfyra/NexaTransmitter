@@ -43,8 +43,7 @@
 
 
 NexaTransmitter::NexaTransmitter(short pin) :
-  txPin(pin),
-  repeat(2) // repeat the transmition 2x
+  txPin(pin)
 {
   pinMode(txPin, OUTPUT);      // transmitter pin.
 }
@@ -52,7 +51,7 @@ NexaTransmitter::NexaTransmitter(short pin) :
 
 //sends either an on/off signal to the main switch
 //always seems to work best if we send it twice..
-void NexaTransmitter::setSwitch(bool on, short recipient, unsigned long remote, short level)
+void NexaTransmitter::setSwitch(bool on, short recipient, unsigned long remote, short repeat, short level)
 {
   transmitterId = remote;
   for (int i = 0; i < repeat; i++) {
