@@ -65,6 +65,7 @@ void NexaTransmitter::setSwitch(bool on, short recipient, unsigned long remote, 
 void NexaTransmitter::transmit(bool blnOn, short recipient, short level)
 {
   int i;
+  cli(); // disable interupts
   // Do the latch sequence..
   digitalWrite(txPin, HIGH);
   delayMicroseconds(270);     // bit of radio shouting before we start. 
@@ -119,7 +120,7 @@ void NexaTransmitter::transmit(bool blnOn, short recipient, short level)
   digitalWrite(txPin, HIGH);   // high again (shut up)
   delayMicroseconds(275);      // wait a moment
   digitalWrite(txPin, LOW);    // low again for 2675 - latch 2.
-
+  sei(); // enable interupts
 }
 
 void NexaTransmitter::sendBit(bool b)
